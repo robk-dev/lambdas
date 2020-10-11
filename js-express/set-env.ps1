@@ -1,0 +1,1 @@
+$env:TABLE="ck-test"

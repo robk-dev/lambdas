@@ -1,0 +1,27 @@
+{
+  "name": "ck-test-api",
+  "version": "1.0.0",
+  "description": "first express-serverless app hosted in aws lambda and dynamoDB",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "npm run clean && npm run build && aws lambda update-function-code --function-name ck-test --zip-file fileb://build.zip --publish",
+    "build": "tsc",
+    "dynamodb": "docker-compose up",
+    "create-database": "aws dynamodb create-table --cli-input-json file://ck-test-table-model.json --endpoint-url http://localhost:8080",
+    "start": "echo \"Execute ./set-env.ps1 first before start\" && node app-local"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.494.0",
+    "aws-serverless-express": "^3.3.6",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/aws-serverless-express": "^3.3.3",
+    "@types/node": "^14.11.8",
+    "typescript": "^4.0.3"
+  }
+}
